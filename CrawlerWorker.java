@@ -1,6 +1,7 @@
 import pl.edu.agh.kis.Logger;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CrawlerWorker extends Thread
 {
@@ -8,9 +9,11 @@ public class CrawlerWorker extends Thread
     DownloadQueue downloadQueue;
     VisitedPages visitedPages;
     WWWPageDownloader pageDownloader = new SocketDownload();
+    AtomicInteger sleepingThreadsCounter;
 
-    CrawlerWorker(Logger logger, DownloadQueue downloadQueue, VisitedPages visitedPages)
+    CrawlerWorker(Logger logger, DownloadQueue downloadQueue, VisitedPages visitedPages, AtomicInteger sleepingThreadsCounter)
     {
+        this.sleepingThreadsCounter = sleepingThreadsCounter;
         this.logger = logger;
         this.downloadQueue = downloadQueue;
         this.visitedPages = visitedPages;
@@ -25,6 +28,23 @@ public class CrawlerWorker extends Thread
         String nextLink;
         while(true)
         {
+            if(downloadQueue.isEmpty())
+            {
+                logger.log(Logger.Level.INFO, this + " is sleeping with " + sleepingThreadsCounter.getAndIncrement() + " other threads");
+
+                if(sleepingThreadsCounter.get() == MultiThreadedCrawler.NUMBER_OF_THREADS)
+                {
+                    logger.log(Logger.Level.INFO, "Nothing to do, exiting from " + this);
+                    break;
+                }
+
+                try
+                {
+                    Thread.sleep(1000);
+                }
+                catch(Exception ignored) {}
+                logger.log(Logger.Level.INFO, this + " woke up, " + sleepingThreadsCounter.decrementAndGet() + " other sleeping threads left");
+            }
             nextLink = null;
             synchronized(downloadQueue)
             {
