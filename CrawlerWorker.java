@@ -32,17 +32,17 @@ public class CrawlerWorker extends Thread
             {
                 logger.log(Logger.Level.INFO, this + " is sleeping with " + sleepingThreadsCounter.getAndIncrement() + " other threads");
 
-                if(sleepingThreadsCounter.get() == MultiThreadedCrawler.NUMBER_OF_THREADS)
-                {
-                    logger.log(Logger.Level.INFO, "Nothing to do, exiting from " + this);
-                    break;
-                }
-
                 try
                 {
                     Thread.sleep(1000);
                 }
                 catch(Exception ignored) {}
+
+                if(sleepingThreadsCounter.get() == MultiThreadedCrawler.NUMBER_OF_THREADS)
+                {
+                    logger.log(Logger.Level.INFO, "Nothing to do, exiting from " + this);
+                    break;
+                }
                 logger.log(Logger.Level.INFO, this + " woke up, " + sleepingThreadsCounter.decrementAndGet() + " other sleeping threads left");
             }
             nextLink = null;

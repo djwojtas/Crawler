@@ -70,7 +70,6 @@ public class SocketDownload implements WWWPageDownloader
 
     public String downloadSSL(String[] url) throws DownloaderException
     {
-
         try
         {
             SSLSocketFactory factory = (SSLSocketFactory)SSLSocketFactory.getDefault();

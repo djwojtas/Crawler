@@ -4,7 +4,7 @@ import java.util.List;
 
 public class RAMDownloadQueue implements DownloadQueue
 {
-    volatile List<String> queue = Collections.synchronizedList(new ArrayList<String>());
+    List<String> queue = Collections.synchronizedList(new ArrayList<String>());
     int index = 0;
 
     @Override

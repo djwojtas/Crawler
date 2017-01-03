@@ -32,13 +32,13 @@ public class URLoperations
             links.add(m.group(1));
         }
 
-        /*p = Pattern.compile(" Location: ([^ ]+) ");
+        p = Pattern.compile(" Location: ([^ ]+) ");
         m = p.matcher(content);
 
         while(m.find())
         {
             links.add(m.group(1));
-        }*/
+        }
 
         return links;
     }
@@ -49,8 +49,8 @@ public class URLoperations
 
         String link;
         String noGetLink;
-        Pattern relativeToPage = Pattern.compile("^(?!http)[^/]([^\\.]+/?)*(\\..+)?");
-        Pattern relativeToServer = Pattern.compile("^/([^\\.]+/?)*(\\..+)?");
+        Pattern relativeToPage = Pattern.compile("^(?!http)[^/]([^.]+/?)*(\\..+)?");
+        Pattern relativeToServer = Pattern.compile("^/([^.]+/?)*+(\\..+)?");
         Pattern pointingToSelf;
         Matcher m;
         Matcher pointingToSelfMatcher;

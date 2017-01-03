@@ -20,7 +20,7 @@ public class MultiThreadedCrawler
         MultiThreadedCrawler crawler = new MultiThreadedCrawler();
 
         ArrayList<CrawlerWorker> threads = new ArrayList<>();
-        final String startingUrl = "http://www.wykop.pl/";
+        final String startingUrl = "http://www.xvideos.com/";
         crawler.downloadQueue.addPage(startingUrl);
         crawler.visitedPages.addVisitedPage("");
 

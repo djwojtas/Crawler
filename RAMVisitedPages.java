@@ -5,7 +5,7 @@ import java.util.TreeSet;
 public class RAMVisitedPages implements VisitedPages
 {
     TreeSet<String> set = new TreeSet<>();
-    volatile Set<String> visited = Collections.synchronizedSet(set);
+    Set<String> visited = Collections.synchronizedSet(set);
 
     @Override
     public boolean pageAlreadyVisited(String pageURL)
