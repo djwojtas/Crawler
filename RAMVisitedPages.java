@@ -4,8 +4,8 @@ import java.util.TreeSet;
 
 public class RAMVisitedPages implements VisitedPages
 {
-    TreeSet<String> set = new TreeSet<>();
-    Set<String> visited = Collections.synchronizedSet(set);
+    private TreeSet<String> set = new TreeSet<>();
+    private Set<String> visited = Collections.synchronizedSet(set);
 
     @Override
     public boolean pageAlreadyVisited(String pageURL)

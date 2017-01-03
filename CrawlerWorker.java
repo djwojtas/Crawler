@@ -5,11 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CrawlerWorker extends Thread
 {
-    Logger logger;
-    DownloadQueue downloadQueue;
-    VisitedPages visitedPages;
-    WWWPageDownloader pageDownloader = new SocketDownload();
-    AtomicInteger sleepingThreadsCounter;
+    private Logger logger;
+    private DownloadQueue downloadQueue;
+    private VisitedPages visitedPages;
+    private WWWPageDownloader pageDownloader = new SocketDownload();
+    private AtomicInteger sleepingThreadsCounter;
 
     CrawlerWorker(Logger logger, DownloadQueue downloadQueue, VisitedPages visitedPages, AtomicInteger sleepingThreadsCounter)
     {

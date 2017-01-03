@@ -4,8 +4,8 @@ import java.util.List;
 
 public class RAMDownloadQueue implements DownloadQueue
 {
-    List<String> queue = Collections.synchronizedList(new ArrayList<String>());
-    int index = 0;
+    private List<String> queue = Collections.synchronizedList(new ArrayList<String>());
+    private int index = 0;
 
     @Override
     public void addPage(String pageURL)

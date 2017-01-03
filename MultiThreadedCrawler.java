@@ -8,12 +8,12 @@ public class MultiThreadedCrawler
 {
     static final int NUMBER_OF_THREADS = 10;
 
-    Logger logger = new Log(System.out, Logger.Level.INFO);
-    DownloadQueue downloadQueue = new RAMDownloadQueue();
-    VisitedPages visitedPages = new RAMVisitedPages();
+    private Logger logger = new Log(System.out, Logger.Level.INFO);
+    private DownloadQueue downloadQueue = new RAMDownloadQueue();
+    private VisitedPages visitedPages = new RAMVisitedPages();
     //DownloadQueue downloadQueue = new H2DownloadQueue();
     //VisitedPages visitedPages = new H2VisitedPages();
-    AtomicInteger sleepingThreadsCounter = new AtomicInteger(0);
+    private AtomicInteger sleepingThreadsCounter = new AtomicInteger(0);
 
     public static void main(String[] args)
     {
